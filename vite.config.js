@@ -6,23 +6,28 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate', // 自动更新缓存
+      registerType: 'autoUpdate', // 发现新版本自动更新
       devOptions: {
-        enabled: true // 开启开发环境下的 PWA 测试
+        enabled: true // 允许你在 npm run dev 下测试 PWA
       },
       workbox: {
-        // 告诉 Service Worker 缓存所有的 js, css, html 和 图片
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+        // 缓存所有的核心文件
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        
+        // 🌟 最核心的一步：让缓存匹配忽略所有的 URL 查询参数 (?share=xxx)
+        ignoreURLParametersMatching: [/.*/], 
+        
+        // （可选）如果你想让拉取过的特定分享幻灯片数据也被缓存，可以加这个 API 拦截规则
         runtimeCaching: [
           {
-            // 拦截所有对 API 的请求，如果你有本地 Mock 或只想忽略 API 报错，可以在这里配
-            urlPattern: /^https:\/\/your-api-domain\.com\/.*/i,
-            handler: 'NetworkFirst',
+            // 匹配你的获取项目接口，比如 /api/projects/1
+            urlPattern: /\/api\/projects\/.*/i, 
+            handler: 'NetworkFirst', // 有网时优先拉取最新 PPT，没网时使用缓存
             options: {
-              cacheName: 'api-cache',
+              cacheName: 'slidecraft-presentations',
               expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 缓存一年
+                maxEntries: 50, // 最多缓存 50 个别人的 PPT
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 缓存保留 30 天
               },
               cacheableResponse: {
                 statuses: [0, 200]
