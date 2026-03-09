@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* 全局基础样式 */
+:root {
+  color-scheme: light;
+}
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #111827;
+  color: white;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* 布局相关的 CSS */
+.app-layout { display: grid; grid-template-columns: 260px 1fr 320px; grid-template-rows: 100vh; overflow: hidden; width: 100vw; height: 100vh; }
+.sidebar-left { background-color: #111827; border-right: 1px solid #374151; display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+.main-workspace { background-color: #1f2937; display: flex; flex-direction: column; overflow: hidden; position: relative; height: 100%; }
+.stage-container { flex: 1; background-color: #374151; position: relative; overflow: hidden; width: 100%; display: flex; align-items: center; justify-content: center; background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px; }
+.stage-content { width: 1344px; height: 816px; background-color: white; box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5); position: absolute; left: 50%; top: 50%; transform-origin: center center; transform: translate(-50%, -50%) scale(0.6); transition: box-shadow 0.3s ease; }
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #1f2937; }
+::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+
+/* 其他工具类样式 */
+.resizer { cursor: row-resize; height: 10px; background: #111827; border-top: 1px solid #374151; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 50; }
+.resizer:hover { background: #374151; }
+.resizer::after { content: ''; width: 40px; height: 4px; background: #4b5563; border-radius: 2px; }
+input, textarea { background-color: #0f172a; color: #e2e8f0; border: 1px solid #334155; }
+input:focus, textarea:focus { outline: 2px solid #6366f1; }
+
+.thumbnail-wrapper { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.thumbnail-active { border-color: #6366f1 !important; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3); opacity: 1 !important; }
+.thumbnail-dragging { opacity: 0.3; border: 2px dashed #6b7280; }
+.thumbnail-drag-over { border-top: 2px solid #6366f1; margin-top: 4px; }
+.presentation-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 9999; display: flex; align-items: center; justify-content: center; outline: none; }
+.visual-toolbar { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: #1f2937; border: 1px solid #374151; padding: 8px 12px; border-radius: 8px; display: flex; gap: 8px; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 100; }
+.tool-btn { background: #374151; color: white; border: none; width: 32px; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
+.tool-btn:hover { background: #4b5563; }
+.tool-divider { width: 1px; height: 20px; background: #4b5563; margin: 0 4px; }
