@@ -53,3 +53,12 @@ input:focus, textarea:focus { outline: 2px solid #6366f1; }
 .tool-btn { background: #374151; color: white; border: none; width: 32px; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
 .tool-btn:hover { background: #4b5563; }
 .tool-divider { width: 1px; height: 20px; background: #4b5563; margin: 0 4px; }
+
+/* 让整个页面真正实现 100% 全屏，没有任何干扰 */
+html, body, #root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
