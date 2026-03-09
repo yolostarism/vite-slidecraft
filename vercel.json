@@ -1,34 +1,12 @@
 {
-  "version": 2,
-  "routes": [
-    { "handle": "filesystem" },
+  "rewrites": [
     {
-      "src": "/api/.*",
-      "dest": "/api/index.cjs"
-    },
-    {
-      "src": "/.*",
-      "dest": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/sw.cjs",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
+      "source": "/api/(.*)",
+      "destination": "/api/index.cjs"
     },
     {
       "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src * data: blob: 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline';"
-        }
-      ]
+      "destination": "/index.html"
     }
   ]
 }

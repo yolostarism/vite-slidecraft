@@ -5,7 +5,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-const SERVER_URL = '/api/'; 
+const SERVER_URL = '/api'; 
         const gradients = [
             'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', // 紫蓝
             'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)', // 深蓝
